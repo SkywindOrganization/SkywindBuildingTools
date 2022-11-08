@@ -44,7 +44,8 @@ let package = Package(
             capability: .buildTool(),
             dependencies: [
                 .target(name: "SwiftLintBinary")
-            ]
+            ],
+            path: "Sources/Linting"
         )
     ]
 )
