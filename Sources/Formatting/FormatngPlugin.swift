@@ -1,6 +1,6 @@
 //
 //  FormattingPlugin.swift
-//  Formatting
+//  Formating
 //
 //  Copyright © 2022 Skywind. All rights reserved.
 //

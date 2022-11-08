@@ -11,8 +11,8 @@ let package = Package(
     name: "SkywindBuildingTools",
     platforms: [.macOS(.v12)],
     products: [
-        .plugin(name: "Formatting", targets: ["Formatting"])
-//        .plugin(name: "Linting", targets: ["Linting"])
+        .plugin(name: "Formatting", targets: ["Formatting"]),
+        .plugin(name: "Linting", targets: ["Linting"])
     ],
     dependencies: [],
     targets: [
@@ -21,13 +21,11 @@ let package = Package(
             url: "https://github.com/nicklockwood/SwiftFormat/releases/download/0.50.3/swiftformat.artifactbundle.zip",
             checksum: "a3221d54c2ac00f5c0ce0a2ebc6906ee371d527814174a9c65983f3a3a395321"
         ),
-        // 不知道為什麼 `swiftlint` 總是失敗
-//        .binaryTarget(name: "swiftlint", path: "Per-Build/SwiftLintBinary-macos.artifactbundle.zip")
-//        .binaryTarget(
-//            name: "swiftlint",
-//            url: "https://github.com/realm/SwiftLint/releases/download/0.49.1/SwiftLintBinary-macos.artifactbundle.zip",
-//            checksum: "227258fdb2f920f8ce90d4f08d019e1b0db5a4ad2090afa012fd7c2c91716df3"
-//        ),
+        .binaryTarget(
+            name: "SwiftLintBinary",
+            url: "https://github.com/realm/SwiftLint/releases/download/0.49.1/SwiftLintBinary-macos.artifactbundle.zip",
+            checksum: "227258fdb2f920f8ce90d4f08d019e1b0db5a4ad2090afa012fd7c2c91716df3"
+        ),
         .plugin(
             name: "Formatting",
             capability: .command(
@@ -40,13 +38,13 @@ let package = Package(
                 .target(name: "swiftformat")
             ],
             path: "Sources/Formatting"
+        ),
+        .plugin(
+            name: "Linting",
+            capability: .buildTool(),
+            dependencies: [
+                .target(name: "SwiftLintBinary")
+            ]
         )
-//        .plugin(
-//            name: "Linting",
-//            capability: .buildTool(),
-//            dependencies: [
-//                .target(name: "swiftlint")
-//            ]
-//        )
     ]
 )
