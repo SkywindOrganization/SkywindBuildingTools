@@ -38,7 +38,7 @@ targets.append(
             ]
         ),
         dependencies: formattingDependencies,
-        path: "Sources/Formatting"
+        path: "Sources/Formating"
     )
 )
 
