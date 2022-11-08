@@ -9,7 +9,7 @@ import PackageDescription
 
 import class Foundation.ProcessInfo
 
-let isPerBuild: Bool = true // ProcessInfo.processInfo.environment["PER_BUILDING"] != nil
+let isPerBuild: Bool = false // ProcessInfo.processInfo.environment["PER_BUILDING"] != nil
 
 /// 當環境變數有預建構旗標連結依賴庫進行編譯
 var dependencies: [Package.Dependency] = []
@@ -28,7 +28,7 @@ var formattingDependencies: [Target.Dependency] = []
             .target(name: "formater")
         ]
         : [
-            .target(name: "formater")
+            .target(name: "PerBuildFormater")
         ])
 
 var targets: [Target] = [
@@ -42,7 +42,7 @@ var targets: [Target] = [
     ]
     : [
         .target(
-            name: "formater",
+            name: "PerBuildFormater",
             path: "Per-Build",
             resources: [.copy("formater")]
         ),
@@ -65,6 +65,7 @@ let products: [Product] = [
         .executable(name: "formater", targets: ["formater"])
     ]
     : [
+        .executable(name: "PerBuildFormater", targets: ["PerBuildFormater"]),
         .plugin(name: "Formatting", targets: ["Formatting"])
     ])
 

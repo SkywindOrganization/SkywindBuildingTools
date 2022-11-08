@@ -8,11 +8,26 @@
 import Foundation
 import PackagePlugin
 
+#if canImport(PerBuildFormater)
+import PerBuildFormater
+#else
+ let execPath: URL? = nil
+#endif
+
 extension CommandPlugin {
 
     func formatCode(in directory: PackagePlugin.Path, context: PluginToolProviding, arguments: [String]) throws {
-        let tool = try context.tool(named: "swiftformat")
-        let toolURL = URL(fileURLWithPath: tool.path.string)
+        var toolURL: URL
+        if let fileURL: URL = execPath {
+            toolURL = fileURL
+            print("Test")
+//            let test = FileManager.default.currentDirectoryPath
+//                .appending("/SkywindBuildingTools_formater.bundle/Contents/Resources/formater")
+//            let testURL = URL(fileURLWithPath: test)
+        } else {
+            let tool = try context.tool(named: "swiftformat")
+            toolURL = URL(fileURLWithPath: tool.path.string)
+        }
 
         var processArguments = [directory.string]
         processArguments.append(contentsOf: arguments)
