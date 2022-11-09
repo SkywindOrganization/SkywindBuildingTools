@@ -6,7 +6,7 @@
             "type": "executable",
             "variants": [
                 {
-                    "path": "formater-0.50.3-macos/bin/formater",
+                    "path": "swiftformat-0.50.3-macos/bin/formater",
                     "supportedTriples": ["x86_64-apple-macosx", "arm64-apple-macosx"]
                 }
             ]
