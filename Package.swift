@@ -38,7 +38,7 @@ var targets: [Target] = [
             name: "formater",
             dependencies: ["SwiftFormat"],
             path: "Sources/FormatingTool"
-        )
+        ),
         .binaryTarget(
             name: "swiftformat",
             url: "https://github.com/nicklockwood/SwiftFormat/releases/download/0.50.3/swiftformat.artifactbundle.zip",
