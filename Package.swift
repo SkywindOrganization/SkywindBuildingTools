@@ -10,7 +10,7 @@ import PackageDescription
 import class Foundation.ProcessInfo
 
 /// 檢查是否在預編譯模式
-let isPerBuilding: Bool = false // ProcessInfo.processInfo.environment["PER_BUILDING"] != nil
+let isPerBuilding: Bool = true // ProcessInfo.processInfo.environment["PER_BUILDING"] != nil
 
 // MARK: - 外部介面
 
@@ -18,12 +18,18 @@ let isPerBuilding: Bool = false // ProcessInfo.processInfo.environment["PER_BUIL
 var products: [Product] = []
 
 if isPerBuilding {
-    products.append(contentsOf: [
+    products.append(
         .executable(
             name: "formater",
             targets: ["formater"]
         )
-    ])
+    )
+    products.append(
+        .executable(
+            name: "linter",
+            targets: ["linter"]
+        )
+    )
 } else {
     products.append(contentsOf: [
         .plugin(
@@ -52,7 +58,7 @@ if isPerBuilding {
     dependencies.append(
         .package(
             url: "https://github.com/realm/SwiftLint.git",
-            .upToNextMajor(from: Version(0, 0, 0))
+            branch: "0.50.0-rc.4"
         )
     )
 }
@@ -70,6 +76,13 @@ if isPerBuilding {
             path: "Sources/FormattingTool"
         )
     ])
+    targets.append(
+        .executableTarget(
+            name: "linter",
+            dependencies: [.product(name: "SwiftLintFramework", package: "SwiftLint")],
+            path: "Sources/LintingTool"
+        )
+    )
 } else {
     targets.append(contentsOf: [
         .binaryTarget(
@@ -92,15 +105,14 @@ if isPerBuilding {
     ])
     targets.append(contentsOf: [
         .binaryTarget(
-            name: "SwiftLintBinary",
-            url: "https://github.com/realm/SwiftLint/releases/download/0.49.1/SwiftLintBinary-macos.artifactbundle.zip",
-            checksum: "227258fdb2f920f8ce90d4f08d019e1b0db5a4ad2090afa012fd7c2c91716df3"
+            name: "linter",
+            path: "Per-Build/linter.artifactbundle"
         ),
         .plugin(
             name: "Linting",
             capability: .buildTool(),
             dependencies: [
-                .target(name: "SwiftLintBinary")
+                .target(name: "linter")
             ],
             path: "Sources/Linting"
         )
