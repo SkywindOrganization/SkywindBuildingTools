@@ -6,8 +6,6 @@ name: 預編譯
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
@@ -15,18 +13,18 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: 設定 Swift 版本
-      uses: swift-actions/setup-swift@v1.19.0
-      with:
-        swift-version: 5.7
-    
-    - name: 建構
-      run: swift build -c release --arch arm64 --arch x86_64
+      - uses: actions/checkout@v3
+
+      - name: 設定 Swift 版本
+      - uses: swift-actions/setup-swift@v1.19.0
+        with:
+          swift-version: 5.7
+
+      - name: 建構
+        run: swift build -c release --arch arm64 --arch x86_64
+        
+      - name: 檢查工作資料夾
+        run: ls -al
       
-    - name: 檢查工作資料夾
-      run: ls -al
-      
-    - name: 檢查檔產生位置
-      run: cd .build/apple/Products/Release; ls -al
+      - name: 檢查檔產生位置
+        run: cd .build/apple/Products/Release; ls -al
