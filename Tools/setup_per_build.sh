@@ -1,2 +1,4 @@
-echo 複製建構完成執行檔...
-cp "./.build/apple/Products/Release/SkywindBuildingTools_formater.bundle/Contents/Resources/formater" "./Per-Build/formater"
+echo 預先處理 Per-Build 資料夾
+
+rm -rf Per-Build
+mkdir Per-Build
