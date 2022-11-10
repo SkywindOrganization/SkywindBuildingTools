@@ -28,7 +28,10 @@ jobs:
       
     - name: 檢查檔產生位置
       run: cd .build/apple/Products/Release; ls -al; cd ../../../../..; ls -al
-      
+  
+    - name: 確認目前位置
+      run: pwd
+
     - name: 使用搬移腳本
       run: ./Tool/setup_formater.sh
       
