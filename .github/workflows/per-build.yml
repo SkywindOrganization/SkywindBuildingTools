@@ -24,7 +24,7 @@ jobs:
       run: swift build -c release --arch arm64 --arch x86_64
 
     - name: 使用搬移腳本
-      run: ./Tool/setup_formater.sh
+      run: ./Tools/setup_formater.sh
       
     - name: 檢查結果
       run: ls -al Per-Build; cat Per-Build/formater.artifactbundle/info.json; ls Per-Build/formater.artifactbundle/formater-0.50.3-macos/bin/
