@@ -11,8 +11,8 @@ import PackagePlugin
 extension CommandPlugin {
 
     func formatCode(in directory: PackagePlugin.Path, context: PluginToolProviding, arguments: [String]) throws {
-        let tool = try context.tool(named: "swiftformat")
-        let toolURL = URL(fileURLWithPath: tool.path.string)
+        let tool = try context.tool(named: "formater")
+        let toolURL: URL = .init(fileURLWithPath: tool.path.string)
 
         var processArguments = [directory.string]
         processArguments.append(contentsOf: arguments)
