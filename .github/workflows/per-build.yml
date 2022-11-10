@@ -14,17 +14,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: 設定 Swift 版本
       uses: swift-actions/setup-swift@v1.19.0
       with:
         swift-version: 5.7
-    
+
     - name: 建構
       run: swift build -c release --arch arm64 --arch x86_64
 
     - name: 使用搬移腳本
-      run: ./Tools/setup_formater.sh
-      
+      run: ./Tools/setup_per_build.sh
+
     - name: 檢查結果
       run: ls -al Per-Build; cat Per-Build/formater.artifactbundle/info.json; ls Per-Build/formater.artifactbundle/formater-0.50.3-macos/bin/
