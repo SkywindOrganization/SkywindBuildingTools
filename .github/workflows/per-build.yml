@@ -9,9 +9,8 @@ on:
 
 jobs:
   build:
-
+    name: 建構
     runs-on: macos-latest
-
     steps:
       - uses: actions/checkout@v3
 
