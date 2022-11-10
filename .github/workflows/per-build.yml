@@ -9,19 +9,20 @@ on:
 
 jobs:
   build:
+
     runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v3
-
+    
     - name: 設定 Swift 版本
-    - uses: swift-actions/setup-swift@v1.19.0
+      uses: swift-actions/setup-swift@v1.19.0
       with:
         swift-version: 5.7
-
+    
     - name: 建構
       run: swift build -c release --arch arm64 --arch x86_64
-        
+      
     - name: 檢查工作資料夾
       run: ls -al
       
