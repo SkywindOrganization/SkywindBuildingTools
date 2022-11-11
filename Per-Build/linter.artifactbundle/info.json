@@ -1,0 +1,15 @@
+{
+    "schemaVersion": "1.0",
+    "artifacts": {
+        "linter": {
+            "version": "0.50.0-rc.4",
+            "type": "executable",
+            "variants": [
+                {
+                    "path": "linter-0.50.0-rc.4-macos/bin/linter",
+                    "supportedTriples": ["x86_64-apple-macosx", "arm64-apple-macosx"]
+                }
+            ]
+        }
+    }
+}
