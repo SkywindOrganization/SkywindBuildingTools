@@ -30,3 +30,14 @@ jobs:
 
     - name: 檢查結果
       run: ls -al Per-Build; cat Per-Build/formater.artifactbundle/info.json; ls Per-Build/formater.artifactbundle/formater-0.50.3-macos/bin/
+
+    - name: Git檢查
+      run: git status
+
+    - name: 建立往 Per-Build 的 PullRequest
+      uses: peter-evans/create-pull-request@v4
+      with:
+        commit-message: 預編譯完成
+        title: 新的預編譯結果合併
+        body: 由 Github Action 建立
+        branch: Per-Build
