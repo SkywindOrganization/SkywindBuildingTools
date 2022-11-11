@@ -25,16 +25,13 @@ function setupTool() {
     TOOL_BUILD_PATH=".build/apple/Products/Release/$TOOL_NAME"
     echo 編譯完成工具執行路徑：$TOOL_BUILD_PATH
 
-    mkdir -p Per-Build
-    cd Per-Build
-
-    # 建立並移動到目標目錄
-    mkdir -p $TOOL_DIR_NAME
-    cd $TOOL_DIR_NAME
+    # 工具二進制目錄中的路徑
+    TOOL_BUNDLE=Per-Build/$TOOL_DIR_NAME
+    mkdir $TOOL_BUNDLE
 
     # 建立 info.json
-    touch info.json
-    cat > info.json <<- EOM
+    touch $TOOL_BUNDLE/info.json
+    cat > $TOOL_BUNDLE/info.json <<- EOM
 {
     "schemaVersion": "1.0",
     "artifacts": {
@@ -51,11 +48,9 @@ function setupTool() {
     }
 }
 EOM
-    cd ../..
 
     # 複製建構完成的執行檔
-
-    TARGET_PATH=Per-Build/$TOOL_DIR_NAME/$TOOL_PATH
+    TARGET_PATH=$TOOL_BUNDLE/$TOOL_PATH
     mkdir -p $TARGET_PATH
-    cp -f "$TOOL_BUILD_PATH" $TARGET_PATH
+    cp -f $TOOL_BUILD_PATH $TARGET_PATH
 }

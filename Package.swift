@@ -10,7 +10,7 @@ import PackageDescription
 import class Foundation.ProcessInfo
 
 /// 檢查是否在預編譯模式
-let isPerBuilding: Bool = true // ProcessInfo.processInfo.environment["PER_BUILDING"] != nil
+let isPerBuilding: Bool = ProcessInfo.processInfo.environment["PER_BUILDING"] != nil
 
 // MARK: - 外部介面
 
