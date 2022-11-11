@@ -12,6 +12,8 @@ Xcode 編譯時期工具
 
 ### 新增使用的插件
 
+* 預編譯階段
+
 在 `isPerBuilding == true` 時將軟體包新增到 `Package.swift` 的 `dependencies` 中
 如：
 
@@ -42,7 +44,6 @@ if isPerBuilding {
 ```
 
 在 `isPerBuilding == true` 時將編譯工具的編譯結果定義新增到 `Package.swift` 的 `products` 中
-
 如：
 
 ```swift
