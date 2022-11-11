@@ -69,17 +69,21 @@ if isPerBuilding {
 var targets: [Target] = []
 
 if isPerBuilding {
-    targets.append(contentsOf: [
+    targets.append(
         .executableTarget(
             name: "formater",
-            dependencies: ["SwiftFormat"],
+            dependencies: [
+                .product(name: "swiftformat", package: "SwiftFormat")
+            ],
             path: "Sources/FormattingTool"
         )
-    ])
+    )
     targets.append(
         .executableTarget(
             name: "linter",
-            dependencies: [.product(name: "SwiftLintFramework", package: "SwiftLint")],
+            dependencies: [
+                .product(name: "swiftlint", package: "SwiftLint")
+            ],
             path: "Sources/LintingTool"
         )
     )

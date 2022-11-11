@@ -16,8 +16,8 @@ struct SwiftLintPlugin: BuildToolPlugin {
     ) async throws -> [PackagePlugin.Command] {
         [
             .buildCommand(
-                displayName: "SwiftLint",
-                executable: try context.tool(named: "swiftlint").path,
+                displayName: "Linting",
+                executable: try context.tool(named: "linter").path,
                 arguments: [
                     "lint",
                     "--cache-path", "\(context.pluginWorkDirectory)"
@@ -37,8 +37,8 @@ extension SwiftLintPlugin: XcodeBuildToolPlugin {
     ) throws -> [Command] {
         [
             .buildCommand(
-                displayName: "SwiftLint",
-                executable: try context.tool(named: "swiftlint").path,
+                displayName: "Linting",
+                executable: try context.tool(named: "linter").path,
                 arguments: [
                     "lint",
                     "--cache-path", "\(context.pluginWorkDirectory)"
