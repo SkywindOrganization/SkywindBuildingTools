@@ -24,12 +24,6 @@ if isPerBuilding {
             targets: ["formater"]
         )
     )
-    products.append(
-        .executable(
-            name: "linter",
-            targets: ["linter"]
-        )
-    )
 } else {
     products.append(contentsOf: [
         .plugin(
@@ -38,7 +32,7 @@ if isPerBuilding {
         ),
         .plugin(
             name: "Linting",
-            targets: ["Linting"]
+            targets: ["SwiftLintBinary"]
         )
     ])
 }
@@ -53,12 +47,6 @@ if isPerBuilding {
         .package(
             url: "https://github.com/nicklockwood/SwiftFormat.git",
             .upToNextMajor(from: Version(0, 0, 0))
-        )
-    )
-    dependencies.append(
-        .package(
-            url: "https://github.com/realm/SwiftLint.git",
-            branch: "0.50.0-rc.4"
         )
     )
 }
@@ -76,15 +64,6 @@ if isPerBuilding {
                 .product(name: "swiftformat", package: "SwiftFormat")
             ],
             path: "Sources/FormattingTool"
-        )
-    )
-    targets.append(
-        .executableTarget(
-            name: "linter",
-            dependencies: [
-                .product(name: "swiftlint", package: "SwiftLint")
-            ],
-            path: "Sources/LintingTool"
         )
     )
 } else {
@@ -107,20 +86,15 @@ if isPerBuilding {
             path: "Sources/Formatting"
         )
     ])
-    targets.append(contentsOf: [
+    targets.append(
         .binaryTarget(
-            name: "linter",
-            path: "Per-Build/linter.artifactbundle"
-        ),
-        .plugin(
-            name: "Linting",
-            capability: .buildTool(),
-            dependencies: [
-                .target(name: "linter")
-            ],
-            path: "Sources/Linting"
+            name: "SwiftLintBinary",
+            url: """
+                https://github.com/realm/SwiftLint/releases/download/0.50.3/SwiftLintBinary-macos.artifactbundle.zip
+                """,
+            checksum: "abe7c0bb505d26c232b565c3b1b4a01a8d1a38d86846e788c4d02f0b1042a904"
         )
-    ])
+    )
 }
 
 // MARK: - 軟體包定義

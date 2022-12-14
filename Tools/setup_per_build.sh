@@ -9,5 +9,5 @@ mkdir Per-Build
 
 echo 複製工具到特定結構內
 setupTool "swiftformat" "formater" "0.50.3"
-setupTool "swiftlint" "linter" "0.50.0-rc.4"
+# setupTool "swiftlint" "linter" "0.50.0-rc.4"
 # <- 在此新增新的工具選項與版本號
