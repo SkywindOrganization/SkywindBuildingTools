@@ -40,4 +40,5 @@ jobs:
         commit-message: 預編譯完成
         title: 新的預編譯結果合併
         body: 由 Github Action 建立
+        head: main
         branch: Per-Build
