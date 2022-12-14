@@ -46,7 +46,7 @@ if isPerBuilding {
     dependencies.append(
         .package(
             url: "https://github.com/nicklockwood/SwiftFormat.git",
-            .upToNextMajor(from: Version(0, 0, 0))
+            exact: Version(0, 50, 6)
         )
     )
 }
